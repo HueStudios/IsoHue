@@ -1,4 +1,5 @@
 (local iso-texture (require :iso-texture))
+(local iso-drawing (require :iso-drawing))
 
 (var top nil)
 (var effect nil)
@@ -14,8 +15,8 @@
   ;(love.graphics.clear 0.5 0.5 0.5)
   (love.graphics.setColor 1 1 1)
   (love.graphics.scale 3 3)
-  (top.draw 100 100)
+  (iso-drawing.draw-texture top 100 100)
   (love.graphics.setColor 0.5 0.6 0.8)
-  (side.draw 100 100)
+  (iso-drawing.draw-texture side 100 100)
   (love.graphics.setColor 0.4 0.4 0.6)
-  (side.draw 102 100 true))
+  (iso-drawing.draw-texture side 102 100 true))
