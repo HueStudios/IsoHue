@@ -7,7 +7,11 @@
 
 (defn love.load []
   (set top (iso-texture :depends/iso-tile-top.png 47 47))
-  (set side (iso-texture :depends/iso-tile-side.png 47 30)))
+  (set side (iso-texture :depends/iso-tile-side.png 47 30))
+  (print (iso-drawing.cartesian-to-iso 0 0 0))
+  (print (iso-drawing.cartesian-to-iso 1 0 0))
+  (print (iso-drawing.cartesian-to-iso 1 1 0))
+  (print (iso-drawing.cartesian-to-iso 0 1 0)))
 
 (defn love.update [dt])
 
