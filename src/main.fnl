@@ -17,4 +17,7 @@
 
 (defn love.update [dt])
 
-(defn love.draw [])
+(defn love.draw []
+  (love.graphics.translate 200 200)
+  (love.graphics.scale 3)
+  (iso-drawing.draw-iso 0 0 0 top side side))
