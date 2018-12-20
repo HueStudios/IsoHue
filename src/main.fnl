@@ -1,6 +1,6 @@
-(local iso-texture (require :iso-texture))
-(local iso-drawing (require :iso-drawing))
-(local iso-tile-terrain (require :iso-tile-terrain))
+(local iso-texture (require :isohue.iso-texture))
+(local iso-drawing (require :isohue.iso-drawing))
+(local iso-tile-terrain (require :isohue.iso-tile-terrain))
 
 (var top nil)
 (var side nil)
