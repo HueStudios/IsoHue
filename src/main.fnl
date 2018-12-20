@@ -1,26 +1,20 @@
 (local iso-texture (require :iso-texture))
 (local iso-drawing (require :iso-drawing))
+(local iso-tile-terrain (require :iso-tile-terrain))
 
 (var top nil)
-(var effect nil)
 (var side nil)
+(var trans nil)
+(var deep nil)
+(var terrain nil)
 
 (defn love.load []
   (set top (iso-texture :depends/iso-tile-top.png 47 47))
   (set side (iso-texture :depends/iso-tile-side.png 47 30))
-  (print (iso-drawing.cartesian-to-iso 0 0 0))
-  (print (iso-drawing.cartesian-to-iso 1 0 0))
-  (print (iso-drawing.cartesian-to-iso 1 1 0))
-  (print (iso-drawing.cartesian-to-iso 0 1 0)))
+  (set trans (iso-texture :depends/iso-tile-side-layer-transition.png 47 30))
+  (set deep (iso-texture :depends/iso-tile-side-layer-lower.png 47 30))
+  (set terrain (iso-tile-terrain top side trans deep)))
 
 (defn love.update [dt])
 
-(defn love.draw []
-  ;(love.graphics.clear 0.5 0.5 0.5)
-  (love.graphics.setColor 1 1 1)
-  (love.graphics.scale 3 3)
-  (iso-drawing.draw-texture top 100 100)
-  (love.graphics.setColor 0.5 0.6 0.8)
-  (iso-drawing.draw-texture side 100 100)
-  (love.graphics.setColor 0.4 0.4 0.6)
-  (iso-drawing.draw-texture side 102 100 true))
+(defn love.draw [])
