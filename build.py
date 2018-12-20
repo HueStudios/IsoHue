@@ -5,27 +5,11 @@ import shutil
 from pynt import task
 
 deps = [
-    #{   "kind":"git",
-    #    "name":"nxgamelib",
-    #    "location":"https://github.com/nexustix/nx-gamelib-fnl.git",
-    #    "version":"latest"
-    #},
-    #{
-    #    "kind":"git",
-    #    "name":"opticum",
-    #    "location":"https://github.com/nexustix/opticum.git",
-    #    "version":"latest"
-    #},
-    #{   "kind":"folder",
-    #    "id":"opticum"
-    #    "in":"./deps/opticum/src/opticum",
-    #    "out":"./src"
-    #},
-    #{   "kind":"folder",
-    #    "id":"nxgamelib"
-    #    "in":"./deps/nxgamelib/src/nxgamelib",
-    #    "out":"./src"
-    #}
+    {   "kind":"file",
+        "id":"json",
+        "in":"./deps/json/json.lua",
+        "out":"./build/json"
+    }
 ]
 
 def _add_depenency(id):
@@ -91,7 +75,10 @@ def dupdate():
         if d["kind"] == "folder":
             x = subprocess.run(["mkdir", "-p", os.path.join(d["out"])], capture_output=True)
             y = subprocess.run(["cp", "-r", os.path.join(d["in"]), os.path.join(d["out"])], capture_output=True)
-            pass
+
+        elif d["kind"] == "file":
+            x = subprocess.run(["mkdir", "-p", os.path.join(d["out"])], capture_output=True)
+            y = subprocess.run(["cp", os.path.join(d["in"]), os.path.join(d["out"])], capture_output=True)
         #elif d["kind"] == "git":
         #    print("<-> cloning " + d["location"] + " into " + os.path.join("./deps", d["name"]))
         #    x = subprocess.run(["git", "clone", d["location"], os.path.join("./deps", d["name"])], capture_output=True)
@@ -104,11 +91,11 @@ def dupdate():
 @task()
 def assets():
     '''copy asset folder'''
-    x = subprocess.run(["mkdir", "-p", os.path.join("./build", "depends")], capture_output=True)
-    y = subprocess.run(["cp", "-r", os.path.join("./depends"), os.path.join("./build")], capture_output=True)
+    x = subprocess.run(["mkdir", "-p", os.path.join("./build", "assets")], capture_output=True)
+    y = subprocess.run(["cp", "-r", os.path.join("./assets"), os.path.join("./build")], capture_output=True)
 
 
-@task(clean, dupdate)
+@task(clean, dupdate, assets)
 def build():
     '''build entire project'''
     _compile_recursive("./src", "./build")
@@ -119,7 +106,7 @@ def wipe():
     '''wipe downloaded dependencies'''
     shutil.rmtree(os.path.join("./deps"), ignore_errors=True)
 
-@task(build, assets)
+@task(build)
 def debug():
     os.chdir("./build/")
     p = subprocess.Popen(["love", "."])
