@@ -3,7 +3,7 @@
 (local iso-utils (require :iso-utils))
 (defn iso-tile-basic [top surface transition deep]
   (local new-tile (iso-tile))
-  (set new-tile.name :terrain)
+  (set new-tile.name :basic)
   (set new-tile.top-texture top)
   (set new-tile.side-surface-texture surface)
   (set new-tile.side-transition-texture transition)
