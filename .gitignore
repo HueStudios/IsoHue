@@ -1,3 +1,6 @@
-build/
 release/
-
+deps/
+build/
+__pycache__/
+_discard/
+src/json
