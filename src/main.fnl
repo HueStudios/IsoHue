@@ -9,8 +9,8 @@
 (var terrain nil)
 
 (defn love.load []
-  (set top (iso-texture :depends/chess/white-tile.png 47 47))
-  (set side (iso-texture :depends/chess/board-side.png 47 30))
+  (set top (iso-texture :assets/chess/white-tile.png 47 47))
+  (set side (iso-texture :assets/chess/board-side.png 47 30))
   (set terrain (iso-tile-terrain top side trans deep)))
 
 (defn love.update [dt])

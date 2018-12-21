@@ -1,6 +1,5 @@
 (local iso-tile (require :iso-tile))
 (local iso-drawing (require :iso-drawing))
-(local json (require :depends/json))
 (local iso-utils (require :iso-utils))
 (defn iso-tile-terrain [top surface transition deep]
   (local new-tile (iso-tile))
