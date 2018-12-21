@@ -1,5 +1,6 @@
 (lambda iso-tile-set []
-  (local new-tile-set.tiles {})
+  (local new-tile-set {})
+  (set new-tile-set.tiles {})
   (lambda new-tile-set.add-tile [tile]
     (local index (+ 1 (# new-tile-set.tiles)))
     (tset new-tile-set.tiles index tile))
