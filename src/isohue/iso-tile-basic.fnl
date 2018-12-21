@@ -1,25 +1,23 @@
 (local iso-tile (require :iso-tile))
 (local iso-drawing (require :iso-drawing))
 (local iso-utils (require :iso-utils))
-(defn iso-tile-basic [top surface transition deep]
+(defn iso-tile-basic [name top side]
   (local new-tile (iso-tile))
-  (set new-tile.name :basic)
+  (set new-tile.name :name)
   (set new-tile.top-texture top)
-  (set new-tile.side-surface-texture surface)
-  (set new-tile.side-transition-texture transition)
-  (set new-tile.side-deep-texture deep)
+  (set new-tile.side-texture side)
   (lambda new-tile.draw [x y z context]
     (var top? nil)
     (var sidea? nil)
     (var sideb? nil)
     (defn check-sides [context texture]
-      (when (= (. context (iso-utils.index [1 0 0])) :empty)
+      (when (= (. context (iso-utils.index [1 0 0])) nil)
         (set sidea? texture))
-      (when (= (. context (iso-utils.index [0 1 0])) :empty)
+      (when (= (. context (iso-utils.index [0 1 0])) nil)
         (set sideb? texture)))
-    (when (= (. context (iso-utils.index [0 0 1])) :empty)
+    (when (= (. context (iso-utils.index [0 0 1])) :nil)
       (set top? new-tile.top-texture)
-      (check-sides context new-tile.side-surface-texture))
+      (check-sides context new-tile.side-texture))
     (iso-drawing.draw-iso x y z
       top?
       sidea?

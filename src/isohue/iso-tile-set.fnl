@@ -1,4 +1,4 @@
-(lambda iso-tile-set []
+(defn iso-tile-set []
   (local new-tile-set {})
   (set new-tile-set.tiles {})
   (lambda new-tile-set.add-tile [tile]
