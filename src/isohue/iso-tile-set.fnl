@@ -9,4 +9,5 @@
     (each [k v (pairs new-tile-set.tiles)]
       (when (= v.name name)
         (set tile v)))
-    tile))
+    tile)
+  new-tile-set)

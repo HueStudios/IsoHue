@@ -24,15 +24,20 @@
   (set board-scenario (iso-scenario 8 8 1 board-tile-set))
   (var this-tile :white)
   (for [x 1 8]
+    (if (= 0 (% x 2))
+      (set this-tile :white)
+      (set this-tile :black))
     (for [y 1 8]
-      (board-scenario.set-tile [x y 1] this-tile)
       (if (= this-tile :white)
         (set this-tile :black)
-        (set this-tile :white)))))
+        (set this-tile :white))
+      (board-scenario.set-tile [x y 1] this-tile)
+      (print x y this-tile))))
 
 (defn love.update [dt])
 
 (defn love.draw []
-  (love.graphics.translate 200 200)
-  (love.graphics.scale 3)
-  (iso-drawing.draw-iso 0 0 0 top side side))
+  (love.graphics.clear (/ 36 255) (/ 36 255) (/ 36 255))
+  (love.graphics.translate 520 50)
+  (love.graphics.scale 2)
+  (board-scenario.draw-scenario))

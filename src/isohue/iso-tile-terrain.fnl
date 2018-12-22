@@ -1,6 +1,6 @@
-(local iso-tile (require :iso-tile))
-(local iso-drawing (require :iso-drawing))
-(local iso-utils (require :iso-utils))
+(local iso-tile (require :isohue.iso-tile))
+(local iso-drawing (require :isohue.iso-drawing))
+(local iso-utils (require :isohue.iso-utils))
 (defn iso-tile-terrain [top surface transition deep]
   (local new-tile (iso-tile))
   (set new-tile.name :terrain)
